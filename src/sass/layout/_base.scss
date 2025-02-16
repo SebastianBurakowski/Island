@@ -1,3 +1,595 @@
 //base style min width
 @use '../variables' as *;
 
+//NAV
+
+.burger-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1em;
+    background: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    z-index: 1000;
+
+    &:hover {
+
+        .burger-btn__bars::after,
+        .burger-btn__bars::before {
+            width: 100%;
+        }
+    }
+
+    &:focus {
+        outline: none;
+        border: 1px solid rgba(255, 255, 255, .5);
+        border-radius: 8px;
+    }
+
+    &__box {
+        position: relative;
+        width: 40px;
+        height: 30px;
+    }
+
+    &__bars,
+    &__bars::after,
+    &__bars::before {
+        position: absolute;
+        right: 0;
+        content: '';
+        height: 3px;
+        background-color: $pure-white;
+        transition: width .3s;
+    }
+
+    &__bars {
+        width: 100%;
+
+        &::after {
+            width: 60%;
+            top: 13px;
+        }
+
+        &::before {
+            width: 30%;
+            top: 27px;
+            transition-delay: .1s;
+        }
+    }
+
+
+}
+
+.black-bars-color,
+.black-bars-color::after,
+.black-bars-color::before {
+    background-color: $dark;
+
+}
+
+
+.nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: $blue-gradient-solid;
+    z-index: 100;
+
+
+
+    &__item {
+        position: relative;
+        display: block;
+        color: $pure-white;
+        margin: 1em 0;
+        padding: 1em 2em;
+        text-decoration: none;
+
+        font-size: 1.4em;
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 3px;
+            background-color: $pure-white;
+            transform: scaleY(0);
+            transition: transform .4s;
+        }
+
+        &:hover::before {
+            transform: scaleY(1);
+        }
+    }
+
+}
+
+@keyframes navItemsAnimation {
+    from {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+
+
+}
+
+.nav-items-animation {
+    animation: navItemsAnimation 1s both;
+
+}
+
+
+
+//HEADER
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    color: $pure-white;
+    height: 75vh;
+    padding: 2em;
+    text-align: center;
+    background-image: $blue-gradient, url('');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-attachment: scroll;
+
+
+    &__heading {
+        font-family: 'Dancing Script';
+        font-size: 4.8rem;
+        font-weight: normal;
+
+
+    }
+
+    &__text {
+        margin-top: 1.2em;
+        font-size: 1.8rem;
+    }
+
+    &__btn {
+        margin-top: 2em;
+        width: 200px;
+        padding: 0.8em 1.6em;
+        background-color: $pure-white;
+        color: $dark;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        text-transform: uppercase;
+
+        &::before {
+            background-color: $light-white;
+        }
+
+    }
+
+    .offer_btn {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+}
+
+//MAIN
+//DREAMS
+
+.dreams {
+    &__box {
+        display: flex;
+        flex-direction: column;
+        margin: 2em 0;
+    }
+
+    &__img {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    &__title {
+        margin-bottom: 1em;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        margin-bottom: 1em;
+    }
+}
+
+//HERO-IMG
+.hero-img {
+    position: relative;
+    padding: 10em 2em;
+    background-image: $blue-gradient, url('');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+    color: $pure-white;
+    overflow: hidden;
+
+    &__title {
+        font-family: 'Dancing Script';
+        font-size: 4.8rem;
+        margin-bottom: 0.5em;
+
+    }
+
+    &__text {
+        font-size: 1.9rem;
+        padding: 1rem 0;
+        font-weight: normal;
+    }
+
+
+}
+
+
+//ISLANDS
+
+.islands {
+    &__card {
+        position: relative;
+        margin: 1em 0;
+        height: 450px;
+        color: $pure-white;
+        text-align: center;
+        perspective: 1000px;
+
+        &:hover {
+            .islands__card-img {
+                transform: rotateY(-180deg);
+                opacity: 0;
+            }
+
+            .islands__card-info {
+                transform: rotateY(0);
+                opacity: 1;
+            }
+        }
+
+        &-img {
+            padding: 2em;
+            height: 100%;
+            border-radius: 8px;
+            background-size: cover;
+            transition: transform 1s, opacity 1s;
+
+            &--first {
+                background-image: $light-blue-gradient, url('../img/island1.jpg');
+            }
+
+            &--second {
+                background-image: $blue-gradient, url('../img/island2.jpg');
+            }
+
+            &--third {
+                background-image: $purple-gradient, url('../img/island3.jpg');
+            }
+
+            &-title {
+                font-family: 'Dancing Script';
+                font-size: 3.8rem;
+
+            }
+
+            &-text {
+                position: absolute;
+                bottom: 30px;
+                right: 30px;
+                font-size: 1.8rem;
+            }
+        }
+
+        &-info {
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            border-radius: 8px;
+            background-image: $light-blue-gradient-solid;
+            opacity: 0;
+            transform: rotateY(180deg);
+            transition: transform 1s, opacity 1s;
+
+            &-title {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
+                top: 0.6em;
+                font-family: 'Dancing Script';
+                font-size: 3.6rem;
+            }
+
+            &-list {
+                position: absolute;
+                top: 100px;
+                list-style: none;
+                width: 70%;
+                margin: 0 auto;
+
+                &-item {
+                    padding: 1em;
+                    font-size: 1.4rem;
+                    border-bottom: 1px solid $light-white;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            &-btn {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
+                bottom: 2em;
+                padding: 1em;
+                border-radius: 8px;
+                width: 80%;
+                border: none;
+                background-color: $green-color;
+                cursor: pointer;
+
+                &::before {
+                    background-color: $green-color-hover;
+                }
+            }
+
+        }
+    }
+}
+
+//OFFERS
+
+.offers {
+    position: relative;
+    background-image: $blue-gradient, url('../img/offer_bckq_small.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+
+    .section-heading {
+        color: $pure-white;
+    }
+
+    &__option {
+        margin: 1em 0;
+        box-shadow: 5px 5px 10px rgba($color: #2e2e2e2e, $alpha: 0.2);
+        background-color: $pure-white;
+        overflow: hidden;
+
+        &-img {
+            width: 100%;
+            transition: transform .8s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        &-info {
+            padding: 2em;
+            background-color: $pure-white;
+            z-index: 10;
+
+        }
+
+        &-heading {
+            text-transform: uppercase;
+            margin-bottom: 0.5em;
+            font-size: 2.4rem;
+            font-weight: 300;
+        }
+
+        &-text {
+            margin-bottom: 0.5em;
+            font-size: 1.4rem;
+            color: $dark;
+        }
+
+        &-btn {
+            margin-top: 1em;
+            padding: 0.8em;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            color: $pure-white;
+            background-color: $main-color;
+            cursor: pointer;
+
+            &::before {
+                background-color: $secondary-color;
+            }
+        }
+
+    }
+
+}
+
+
+//RIEVEWS
+
+//meida reviews
+
+@media (max-width: 767px) {
+    .reviews.section-padding {
+        padding: 6em 0;
+    }
+
+}
+
+//----
+
+.reviews {
+    &__box {
+        position: relative;
+        margin: 2em;
+        padding: 2em;
+        border-radius: 8px;
+        box-shadow: 3px 3px 10px #2e2e2e2e;
+        transition: transform .3s;
+
+        &:hover {
+            transform: scale(.95);
+        }
+    }
+
+    &__box-img {
+        position: absolute;
+        top: 8%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    &__box-quote {
+        margin-bottom: 1em;
+        font-size: 3rem;
+        color: $main-color;
+    }
+
+    &__box-text {
+        margin-bottom: 1em;
+        font-size: 1.4rem;
+        color: $dark;
+    }
+}
+
+//CONTACT
+
+.contact {
+    position: relative;
+    background-color: $light-white;
+    overflow: hidden;
+
+    .white-block-left {
+        background-color: $dark;
+    }
+
+    &__form,
+    &__form-top {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__form-label {
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+    }
+
+    &__form-input {
+        margin-bottom: 0.5em;
+        padding: 0.6em 1.2em;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.6rem;
+    }
+
+    &__form-textarea {
+        margin-bottom: 0.5em;
+        padding: 0.6em 1.2em;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.6rem;
+        max-width: 100%;
+        min-width: 100%;
+        width: 100%;
+        min-height: 150px;
+        max-height: 150px;
+
+    }
+
+    &__form-btn {
+        align-self: flex-start;
+        padding: 1em;
+        width: 100%;
+        max-width: 300px;
+        color: $pure-white;
+        border: none;
+        border-radius: 8px;
+        background-color: $main-color;
+        cursor: pointer;
+
+        &::before {
+            background-color: $secondary-color;
+        }
+    }
+}
+
+//FOOTER
+
+.footer {
+    color: $pure-white;
+    background-color: $dark;
+
+    .wrapper {
+        padding: 6em 2em 2em;
+    }
+
+    &__box {
+        font-size: 1.4rem;
+    }
+
+    &__box-desktop {
+        display: none;
+    }
+
+    &__box-title {
+        margin-bottom: 1em;
+        font-size: 3rem;
+        text-transform: uppercase;
+    }
+
+    &__box-social {
+        margin: 2em 0 1em;
+    }
+
+    &__box-link {
+        padding: 0 .3em;
+        font-size: 3.6rem;
+        color: $pure-white;
+        text-decoration: none;
+        transition: color .3s;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:hover {
+            color: $light-white;
+        }
+    }
+
+    &__bottom-text {
+        padding: 2em;
+        text-align: center;
+    }
+}
